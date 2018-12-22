@@ -1,6 +1,6 @@
 document.addEventListener("keyup", checkKeyPress);
 
-let word = ["Brandon Sanderson", "Dakota Krout", "Dennis Taylor", "Dean Kootz", "Stephen King", "Elizabeth Moon", "Mary Robinette Kowall"]
+let word = ["Brandon Sanderson", "Dakota Krout", "Dennis E Taylor", "Dean Kootz", "Stephen King", "Elizabeth Moon", "Mary Robinette Kowall"]
   
 
 let displayWriter = [];
@@ -65,15 +65,33 @@ document.addEventListener("keydown", function checkCorrect() {
                 correctKey.push(event.key);
                 lives++;
             }
-            // trying to use this to compare to array and bring up correct image does not seem to be bringing up image
+            // for (i = 0; i < writer.length; i++) {
+            //     if (correct[i] === "<br>") {
+            //         correct[i] =" ";
+            // if (correct === word[0]) {
+            //     document.getElementById("book").src='../images/wayofkings.jpg';
+            // });
             if (displayWriter.join("") === correct.join("")) {
-            for (i = 0; i < writer.length; i++) {
-                if (correct[i] === "<br>") {
-                    correct[i] = " ";
-                }
+            if (correct.join("") === "Brandon<br>Sanderson") {
+                document.getElementById("book").src="../Word-Guess-Game/assets/images/wayofkings.jpg";
             }
-            if (correct === word[0]) {
-                document.getElementById("book").src="../assets/images/wayofkings.jpg";
+            if (correct.join("") === "Dean<br>Kootz") {
+                document.getElementById("book").src="../Word-Guess-Game/assets/images/innocence.jpg";
+            }
+            if (correct.join("") === "Elizabeth<br>Moon") {
+                document.getElementById("book").src="../Word-Guess-Game/assets/images/speed_of_dark.jpg";
+            }
+            if (correct.join("") === "Mary<br>Robinette<br>Kowall") {
+                document.getElementById("book").src="../Word-Guess-Game/assets/images/shades_of_milk_and_honey.jpg";
+            }
+            if (correct.join("") === "Stephen<br>King") {
+                document.getElementById("book").src="../Word-Guess-Game/assets/images/green_mile.jpg";
+            }
+            if (correct.join("") === "Dennis<br>E<br>Taylor") {
+                document.getElementById("book").src="../Word-Guess-Game/assets/images/we_are_bob.jpg";
+            }
+            if (correct.join("") === "Dakota<br>Krout") {
+                document.getElementById("book").src="../Word-Guess-Game/assets/images/divine_dungeon.jpg";
             }
             alert("You Win");
             wins++
