@@ -35,8 +35,7 @@ function underscore() {
 }
 underscore();
 
-// add if lives = 0 you lose add lose alert
-// need to get lives working
+// need to make so that only alphabet registers
 
 
 function checkKeyPress(event) {
@@ -52,7 +51,7 @@ function checkKeyPress(event) {
 
 document.addEventListener("keydown", function checkCorrect() {
     for (i = 0; i < correct.length; i++) {
-        if (event.key === correct[i].toLowerCase()) {
+        if (event.key.toLowerCase() === correct[i].toLowerCase()) {
             displayWriter[i] = correct[i];
             document.getElementById("hangman").innerHTML = displayWriter.join("")
             if (correctKey.indexOf(event.key) === -1) {
