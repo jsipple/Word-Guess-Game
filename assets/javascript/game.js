@@ -2,10 +2,13 @@ document.addEventListener("keyup", checkKeyPress);
 
 let word = ["Brandon Sanderson", "Dakota Krout", "Dennis Taylor", "Dean Kootz", "Stephen King", "Elizabeth Moon", "Mary Robinette Kowall"]
   
-let lives = 10;
+
 let displayWriter = [];
 let writer = ""
 let correct = ""
+let wins = 0
+let guessed = [];
+let lives = 10;
 function newWord() {
     let randomNumber = Math.floor(Math.random() * word.length);
     writer = word[randomNumber];
@@ -13,11 +16,8 @@ function newWord() {
     console.log(writer);
 }
 newWord();
+document.getElementById("lives").textContent = "Current lives: " + lives
 
-
-let guessed = [];
-let incorrect = 0;
-let wins = 0
 // need to make this a function so that i can run again when person wins
 
 // change for loop into iterator by doing let = for ()
@@ -34,11 +34,16 @@ function underscore() {
 }
 underscore();
 
+// add if lives = 0 you lose add lose alert
+// need to get lives working
+
 
 function checkKeyPress(event) {
+    if (guessed.indexOf(event.key) === -1) {
     if (event.keyCode >= 65 && event.keyCode <= 90); {
         guessed.push(event.key)
         document.getElementById("guessed").innerHTML = guessed;
+    }
     }
 }
 
@@ -59,11 +64,5 @@ document.addEventListener("keydown", function checkCorrect() {
             underscore();
         }
     } 
-    }
-})
-correct.forEach(function(event, i) {
-    if (guessed[i] !== event) {
-        lives--;
-        document.getElementById("lives").textContent = "Current lives: " + lives
     }
 })
