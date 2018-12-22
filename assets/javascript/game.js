@@ -8,7 +8,8 @@ let writer = ""
 let correct = ""
 let wins = 0
 let guessed = [];
-let lives = 10;
+let correctKey = [];
+let lives = 10
 function newWord() {
     let randomNumber = Math.floor(Math.random() * word.length);
     writer = word[randomNumber];
@@ -16,7 +17,7 @@ function newWord() {
     console.log(writer);
 }
 newWord();
-document.getElementById("lives").textContent = "Current lives: " + lives
+document.getElementById("lives").textContent = "Current Lives: " + lives
 
 // need to make this a function so that i can run again when person wins
 
@@ -43,6 +44,8 @@ function checkKeyPress(event) {
     if (event.keyCode >= 65 && event.keyCode <= 90); {
         guessed.push(event.key)
         document.getElementById("guessed").innerHTML = guessed;
+        lives--;
+        document.getElementById("lives").textContent = "Current Lives " + lives;
     }
     }
 }
@@ -52,6 +55,10 @@ document.addEventListener("keydown", function checkCorrect() {
         if (event.key === correct[i].toLowerCase()) {
             displayWriter[i] = correct[i];
             document.getElementById("hangman").innerHTML = displayWriter.join("")
+            if (correctKey.indexOf(event.key) === -1) {
+                correctKey.push(event.key);
+                lives++;
+            }
         
             if (displayWriter.join("") === correct.join("")) {
             alert("You Win");
@@ -59,7 +66,9 @@ document.addEventListener("keydown", function checkCorrect() {
             document.getElementById("wins").textContent = "Wins: " + wins;
             guessed = [];
             displayWriter = [];
+            correctKey = [];
             lives = 10;
+            document.getElementById("lives").textContent = "Current Lives " + lives;
             newWord();
             underscore();
         }
