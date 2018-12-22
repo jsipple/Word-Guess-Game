@@ -1,0 +1,27 @@
+/* need to put text stuff in center
+and figure out what i want to change background to */
+body {
+    color: white;
+    background-color: black;
+}
+h1 {
+    font-size: 40px;
+    text-align: center;
+}
+p {
+    text-align: center;
+}
+#content {
+    border: white dashed 1px;
+    width: 250px;
+    margin: 0 auto;
+    height: 300px;
+    margin-top: 50px;
+}
+#book {
+    float: left;
+    margin-left: 10px;
+    position: absolute;
+    top: 40px;
+    left: 60px;
+}
