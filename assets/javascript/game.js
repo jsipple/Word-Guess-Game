@@ -4,16 +4,22 @@ let word = ["Brandon Sanderson", "Dakota Krout", "Dennis Taylor", "Dean Kootz", 
   
 let lives = 10;
 let displayWriter = [];
-let randomNumber = Math.floor(Math.random() * word.length);
-let writer = word[randomNumber];
-let correct = writer.split("");
+let writer = ""
+let correct = ""
+function newWord() {
+    let randomNumber = Math.floor(Math.random() * word.length);
+    writer = word[randomNumber];
+    correct = writer.split("");
+    console.log(writer);
+}
+newWord();
+
+
 let guessed = [];
 let incorrect = 0;
 let wins = 0
 // need to make this a function so that i can run again when person wins
-function randomWord() {
-    writer = word[randomNumber];
-}
+
 // change for loop into iterator by doing let = for ()
 function underscore() {
     for (i = 0; i < writer.length; i++) {
@@ -22,11 +28,12 @@ function underscore() {
         correct[i] ="<br>";
     } else {
         displayWriter[i] = "_ ";
+        document.getElementById("hangman").innerHTML = displayWriter.join("");
     }
 }
 }
 underscore();
-document.getElementById("hangman").innerHTML = displayWriter.join("");
+
 
 function checkKeyPress(event) {
     if (event.keyCode >= 65 && event.keyCode <= 90); {
@@ -45,7 +52,10 @@ document.addEventListener("keydown", function checkCorrect() {
             alert("You Win");
             wins++
             document.getElementById("wins").textContent = "Wins: " + wins;
-            randomWord();
+            guessed = [];
+            displayWriter = [];
+            lives = 10;
+            newWord();
             underscore();
         }
     } 
