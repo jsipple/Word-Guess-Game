@@ -4,12 +4,13 @@ let word = ["Brandon Sanderson", "Dakota Krout", "Dennis Taylor", "Dean Kootz", 
   
 
 let displayWriter = [];
-let writer = ""
-let correct = ""
-let wins = 0
+let writer = "";
+let correct = "";
+let wins = 0;
 let guessed = [];
 let correctKey = [];
-let lives = 10
+let lives = 10;
+let losses = 0;
 function newWord() {
     let randomNumber = Math.floor(Math.random() * word.length);
     writer = word[randomNumber];
@@ -39,12 +40,18 @@ underscore();
 
 
 function checkKeyPress(event) {
-    if (guessed.indexOf(event.key) === -1) {
-    if (event.keyCode >= 65 && event.keyCode <= 90); {
-        guessed.push(event.key)
+    if (guessed.indexOf(event.key.toLowerCase()) === -1) {
+    if (event.key = /[a-z]/gi); {
+        guessed.push(event.key.toLowerCase())
         document.getElementById("guessed").innerHTML = guessed;
         lives--;
         document.getElementById("lives").textContent = "Current Lives " + lives;
+        if (lives == 0) {
+            alert("You lose");
+            losses++
+            document.getElementById("losses").textContent = "losses: " + losses
+            reset();
+        }
     }
     }
 }
@@ -63,14 +70,17 @@ document.addEventListener("keydown", function checkCorrect() {
             alert("You Win");
             wins++
             document.getElementById("wins").textContent = "Wins: " + wins;
-            guessed = [];
-            displayWriter = [];
-            correctKey = [];
-            lives = 10;
-            document.getElementById("lives").textContent = "Current Lives " + lives;
-            newWord();
-            underscore();
+            reset();
         }
     } 
     }
 })
+function reset() {
+    guessed = [];
+    displayWriter = [];
+    correctKey = [];
+    lives = 10;
+    document.getElementById("lives").textContent = "Current Lives " + lives;
+    newWord();
+    underscore();
+}
