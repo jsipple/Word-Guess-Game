@@ -41,7 +41,7 @@ underscore();
 
 function checkKeyPress(event) {
     if (guessed.indexOf(event.key.toLowerCase()) === -1) {
-    if (event.key = /[a-z]/gi); {
+    if (event.keyCode >= 65 && event.keyCode <= 122); {
         guessed.push(event.key.toLowerCase())
         document.getElementById("guessed").innerHTML = guessed;
         lives--;
@@ -52,9 +52,9 @@ function checkKeyPress(event) {
             document.getElementById("losses").textContent = "losses: " + losses
             reset();
         }
+    } 
     }
     }
-}
 
 document.addEventListener("keydown", function checkCorrect() {
     for (i = 0; i < correct.length; i++) {
@@ -65,8 +65,16 @@ document.addEventListener("keydown", function checkCorrect() {
                 correctKey.push(event.key);
                 lives++;
             }
-        
+            // trying to use this to compare to array and bring up correct image does not seem to be bringing up image
             if (displayWriter.join("") === correct.join("")) {
+            for (i = 0; i < writer.length; i++) {
+                if (correct[i] === "<br>") {
+                    correct[i] = " ";
+                }
+            }
+            if (correct === word[0]) {
+                document.getElementById("book").src="../assets/images/wayofkings.jpg";
+            }
             alert("You Win");
             wins++
             document.getElementById("wins").textContent = "Wins: " + wins;
