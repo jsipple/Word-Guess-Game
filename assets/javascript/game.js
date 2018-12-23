@@ -9,7 +9,7 @@ let correct = "";
 let wins = 0;
 let guessed = [];
 let correctKey = [];
-let lives = 10;
+let lives = 6;
 let losses = 0;
 function newWord() {
     let randomNumber = Math.floor(Math.random() * word.length);
@@ -46,11 +46,26 @@ function checkKeyPress(event) {
         document.getElementById("guessed").innerHTML = guessed;
         lives--;
         document.getElementById("lives").textContent = "Current Lives " + lives;
+        if (lives == 5) {
+            document.getElementById("man").src="../Word-Guess-Game/assets/images/hangman2.png";
+        }
+        if (lives == 4) {
+            document.getElementById("man").src="../Word-Guess-Game/assets/images/hangman3.png";
+        }
+        if (lives == 3) {
+            document.getElementById("man").src="../Word-Guess-Game/assets/images/hangman4.png";
+        }
+        if (lives == 2) {
+            document.getElementById("man").src="../Word-Guess-Game/assets/images/hangman7.png";
+        }
+        if (lives == 1) {
+            document.getElementById("man").src="../Word-Guess-Game/assets/images/hangman5.png";
+        }
         if (lives == 0) {
-            alert("You lose");
+            document.getElementById("man").src="../Word-Guess-Game/assets/images/hangman6.png";
             losses++
             document.getElementById("losses").textContent = "losses: " + losses
-            reset();
+            document.getElementById("playAgain").style.visibility = "visible";
         }
     } 
     }
@@ -65,12 +80,6 @@ document.addEventListener("keydown", function checkCorrect() {
                 correctKey.push(event.key);
                 lives++;
             }
-            // for (i = 0; i < writer.length; i++) {
-            //     if (correct[i] === "<br>") {
-            //         correct[i] =" ";
-            // if (correct === word[0]) {
-            //     document.getElementById("book").src='../images/wayofkings.jpg';
-            // });
             if (displayWriter.join("") === correct.join("")) {
             if (correct.join("") === "Brandon<br>Sanderson") {
                 document.getElementById("book").src="../Word-Guess-Game/assets/images/wayofkings.jpg";
@@ -93,10 +102,9 @@ document.addEventListener("keydown", function checkCorrect() {
             if (correct.join("") === "Dakota<br>Krout") {
                 document.getElementById("book").src="../Word-Guess-Game/assets/images/divine_dungeon.jpg";
             }
-            alert("You Win");
             wins++
             document.getElementById("wins").textContent = "Wins: " + wins;
-            reset();
+            document.getElementById("playAgain").style.visibility = "visible";
         }
     } 
     }
@@ -105,8 +113,11 @@ function reset() {
     guessed = [];
     displayWriter = [];
     correctKey = [];
-    lives = 10;
+    lives = 6;
+    document.getElementById("guessed").innerHTML = guessed;
     document.getElementById("lives").textContent = "Current Lives " + lives;
+    document.getElementById("man").src="../Word-Guess-Game/assets/images/hangman1.png";
     newWord();
     underscore();
+    document.getElementById("playAgain").style.visibility = "hidden";
 }
